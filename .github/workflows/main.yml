@@ -28,7 +28,7 @@ jobs:
         os: [ubuntu-latest]
 
         # List of MATLAB releases over which to run the tests.
-        matlab-version: [R2022b]
+        matlab-version: [R2023b]
     
     # Specify the runner that the job will run on.
     runs-on: ${{ matrix.os }}
@@ -45,7 +45,13 @@ jobs:
         uses: matlab-actions/setup-matlab@v1
         with:
           release: ${{ matrix.matlab-version }}
-
+          
+      - name: Start display server
+        run: |
+          sudo apt-get install xvfb
+          Xvfb :99 &
+          echo "DISPLAY=:99" >> $GITHUB_ENV
+          
       # Run the GLT tests.
       - name: Run the GLT tests
         uses: matlab-actions/run-command@v1
