@@ -38,11 +38,11 @@ jobs:
       
       # Check out the repository under $GITHUB_WORKSPACE, so that the job can access it.
       - name: Check out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Set up MATLAB on the runner.
       - name: Set up MATLAB on the runner
-        uses: matlab-actions/setup-matlab@v2-rc0
+        uses: matlab-actions/setup-matlab@v1
         with:
           release: ${{ matrix.matlab-version }}
           
@@ -54,6 +54,6 @@ jobs:
           
       # Run the GLT tests.
       - name: Run the GLT tests
-        uses: matlab-actions/run-command@v2-rc0
+        uses: matlab-actions/run-command@v1
         with:
           command: openProject("project.prj");results = runtests("tSimpleTest.m");
