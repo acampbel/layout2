@@ -60,5 +60,6 @@ jobs:
 
           # Run the GLT tests.
       - name: Run all the tests
+        if: always()
         uses: matlab-actions/run-tests@v1
           
